@@ -16,10 +16,10 @@ fun ReactionButtons(modifier: Modifier = Modifier) {
             .background(color = Color.White)
             .fillMaxWidth()
     ) {
-        postActions.forEach {
+        postActions.forEachIndexed { index, postAction ->
             ReactionButton(
-                icon = it.icon,
-                text = it.text,
+                icon = postAction.icon,
+                text = postAction.text,
                 modifier = Modifier.weight(1f)
             )
         }
