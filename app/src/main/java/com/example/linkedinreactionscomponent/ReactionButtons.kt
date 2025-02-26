@@ -16,13 +16,23 @@ fun ReactionButtons(modifier: Modifier = Modifier) {
             .background(color = Color.White)
             .fillMaxWidth()
     ) {
-        postActions.forEachIndexed { index, postAction ->
-            ReactionButton(
-                icon = postAction.icon,
-                text = postAction.text,
-                modifier = Modifier.weight(1f)
-            )
-        }
+        ReactionButton(
+            icon = R.drawable.ic_reaction_like,
+            text = "Like",
+            modifier = Modifier.weight(1f)
+        )
+
+        ReactionButton(
+            icon = R.drawable.ic_comment,
+            text = "Comment",
+            modifier = Modifier.weight(1f)
+        )
+
+        ReactionButton(
+            icon = R.drawable.ic_share,
+            text = "Share",
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
