@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding),
                         contentAlignment = Alignment.Center,
                     ) {
-                        ReactionButtons()
+                        PostButtons()
                     }
                 }
             }

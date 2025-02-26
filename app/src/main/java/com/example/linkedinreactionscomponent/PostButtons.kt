@@ -10,25 +10,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.linkedinreactionscomponent.ui.theme.LinkedInReactionsComponentTheme
 
 @Composable
-fun ReactionButtons(modifier: Modifier = Modifier) {
+fun PostButtons(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .background(color = Color.White)
             .fillMaxWidth()
     ) {
-        ReactionButton(
+        PostActionButton(
             icon = R.drawable.ic_reaction_like,
             text = "Like",
             modifier = Modifier.weight(1f)
         )
 
-        ReactionButton(
+        PostActionButton(
             icon = R.drawable.ic_comment,
             text = "Comment",
             modifier = Modifier.weight(1f)
         )
 
-        ReactionButton(
+        PostActionButton(
             icon = R.drawable.ic_share,
             text = "Share",
             modifier = Modifier.weight(1f)
@@ -40,6 +40,6 @@ fun ReactionButtons(modifier: Modifier = Modifier) {
 @Composable
 private fun ReactionButtonsPreview() {
     LinkedInReactionsComponentTheme {
-        ReactionButtons()
+        PostButtons()
     }
 }
