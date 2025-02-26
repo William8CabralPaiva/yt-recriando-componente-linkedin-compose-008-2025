@@ -2,8 +2,6 @@ package com.example.linkedinreactionscomponent
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.linkedinreactionscomponent.ui.theme.LinkedInReactionsComponentTheme
 
 @Composable
-fun ReactionButton(
+fun PostActionButton(
     icon: Int,
     text: String,
     modifier: Modifier = Modifier
@@ -43,9 +41,9 @@ fun ReactionButton(
 
 @Preview(showBackground = true)
 @Composable
-private fun ReactionButtonPreview() {
+private fun PostActionButtonPreview() {
     LinkedInReactionsComponentTheme {
-        ReactionButton(
+        PostActionButton(
             icon = R.drawable.ic_reaction_like,
             text = "Like"
         )
