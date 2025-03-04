@@ -1,21 +1,17 @@
 package com.example.linkedinreactionscomponent
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,39 +38,28 @@ fun PostButtons(modifier: Modifier = Modifier) {
             .background(color = Color.White)
             .fillMaxWidth()
     ) {
-        var showReactionsPopup by remember { mutableStateOf(false) }
-        var postActionLikePosition by remember { mutableStateOf(Offset.Zero) }
+
+        var showReactPopUp by remember { mutableStateOf(false) }
+        var postPositionLikeButton by remember { mutableStateOf(Offset.Zero) }
         val density = LocalDensity.current
         val offsetY = with(density) {
-            postActionLikePosition.y - 90.dp.toPx()
+            postPositionLikeButton.y - 50.dp.toPx()
         }
 
-        if (showReactionsPopup) {
+        if (showReactPopUp) {
             Popup(
+                offset = IntOffset(
+                    x = postPositionLikeButton.x.toInt(),
+                    y = offsetY.toInt()
+                ),
                 onDismissRequest = {
-                    showReactionsPopup = false
-                }
+                    showReactPopUp = false
+                },
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.1f))
-                        .clickable {
-                            showReactionsPopup = false
-                        }
-                )
-
                 Surface(
                     shape = MaterialTheme.shapes.extraLarge,
                     color = Color.White,
-                    shadowElevation = 3.dp,
-                    modifier = Modifier
-                        .offset {
-                            IntOffset(
-                                x = postActionLikePosition.x.toInt(),
-                                y = offsetY.toInt()
-                            )
-                        }
+                    shadowElevation = 3.dp
                 ) {
                     Row {
                         listOf(
@@ -87,10 +72,10 @@ fun PostButtons(modifier: Modifier = Modifier) {
                         ).forEach { iconResId ->
                             Surface(
                                 onClick = {
-                                    showReactionsPopup = false
+                                    showReactPopUp = false
                                 },
                                 shape = CircleShape,
-                                color = Color.LightGray,
+                                color = Color.LightGray
                             ) {
                                 Image(
                                     painter = painterResource(iconResId),
@@ -111,13 +96,12 @@ fun PostButtons(modifier: Modifier = Modifier) {
             text = "Like",
             modifier = Modifier
                 .onGloballyPositioned {
-                    postActionLikePosition = it.positionInWindow()
-                    Log.d("position", "PostButtons: $postActionLikePosition")
+                    postPositionLikeButton = it.positionInParent()
                 }
                 .combinedClickable(
                     onClick = {},
                     onLongClick = {
-                        showReactionsPopup = true
+                        showReactPopUp = true
                     }
                 )
                 .weight(1f)
